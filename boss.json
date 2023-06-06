@@ -1,0 +1,9 @@
+{
+	"name": "lib_string",
+	"description": "Funcionalidades úteis para manipulação de strings em Delphi",
+	"version": "1.0.0",
+	"homepage": "github.com/solussaude/lib_string",
+	"mainsrc": "./src",
+	"projects": [],
+	"dependencies": {}
+}
