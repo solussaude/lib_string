@@ -1,0 +1,5 @@
+*.res
+*.local
+*.identcache
+/modules/*
+/__recovery/*
