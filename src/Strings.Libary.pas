@@ -5,7 +5,6 @@ interface
 type
   TStringUtil = class
   public
-    class function Crypt(const AStr: string; const AKey: string = 'SOLUS'): string;
     class function RandomText(const ALength: Integer; const AType: Integer = 3): string;
 
     class function OnlyChars(const AStr: string): string; overload;
@@ -18,26 +17,6 @@ implementation
 
 uses
   System.SysUtils;
-
-// Criptografia de texto simples
-class function TStringUtil.Crypt(const AStr, AKey: string): string;
-var
-  LCrypt: string;
-begin
-  Result := AStr;
-
-  for var LI: Integer := 1 to AKey.Length do
-  begin
-    LCrypt := '';
-
-    for var LJ: Integer := 1 to AStr.Length do
-    begin
-      LCrypt := LCrypt + Chr(Ord(AKey[LI]) xor Ord(Result[LJ]));
-    end;
-
-    Result := LCrypt;
-  end;
-end;
 
 // Retorna apenas os caracteres do texto, dado que foram informados os caracteres
 // desejados na comparação

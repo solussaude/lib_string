@@ -1,5 +1,9 @@
+*.exe
+*.xml
 *.res
 *.local
 *.identcache
+
+tests/src/Win32/*
 /modules/*
 /__recovery/*
