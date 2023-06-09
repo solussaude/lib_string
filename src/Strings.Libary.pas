@@ -12,6 +12,7 @@ type
 
   public
     class function RandomText(const ALength: Integer; const AType: Integer = 3): string;
+    class function InClause(const AList: array of string; const AField: string; const APutQuotes: Boolean = False): string;
 
     class function OnlyChars(const AStr: string): string; overload;
     class function OnlyChars(const AStr: string; const AChars: string): string; overload;
@@ -20,11 +21,16 @@ type
 
     class function AbbreviateAddress(const AStr: string; const ALength: Integer): string;
     class function AbbreviateName(const AStr: string; const ALength: Integer): string;
+
+    class function Normalize(const AStr: string): string;
+    class function ContainsInvalidChars(const AStr: string; const AInvalidChars: string = '*§.''/()_#-\`´|:ªº"°~!@$%^&+=;?€[]{}"¿'): Boolean;
+    class function StrEqual(const AStr: string; const AValues: array of string; const AUpper: Boolean = True): Boolean;
   end;
 
 implementation
 
 uses
+  System.StrUtils,
   System.SysUtils;
 
 // Abrevia um endereço
@@ -141,6 +147,108 @@ begin
   end;
 end;
 
+// Valida se o texto contém caracteres inválidos
+class function TStringUtil.ContainsInvalidChars(const AStr, AInvalidChars: string): Boolean;
+begin
+  Result := False;
+
+  for var LI: Integer := 1 to AStr.Length do
+  begin
+    if AInvalidChars.Contains(AStr[LI]) then
+    begin
+      Exit(True);
+    end;
+  end;
+end;
+
+// Cria uma composição IN-SQL
+class function TStringUtil.InClause(const AList: array of string; const AField: string; const APutQuotes: Boolean): string;
+var
+  LLength: Integer;
+  LAux: Integer;
+  LQuote: string;
+  LPutOr: Boolean;
+begin
+  Result := '';
+
+  LLength := Length(AList);
+  LAux := 0;
+
+  LPutOr := False;
+  LQuote := IfThen(APutQuotes, '''', '');
+
+  if LLength > 1 then
+  begin
+    Result := AField + ' IN (';
+
+    for var LI := 0 to LLength - 1 do
+    begin
+      if (not AList[LI].IsEmpty) and (AList[LI] <> '0') then
+      begin
+        Result := Result + LQuote + AList[LI] + LQuote + ', ';
+
+        Inc(LAux);
+
+        if (LAux = 999) and (LI < LLength - 1) then
+        begin
+          LAux := 1;
+          Result := Result.Substring(0, Result.Length - 2) + ') OR ' + AField + ' IN (';
+          LPutOr := True;
+        end;
+      end;
+    end;
+
+    if LPutOr then
+    begin
+      Result := '(' + Result.Substring(0, Result.Length - 2) + '))';
+    end
+    else
+    begin
+      Result := Result.Substring(0, Result.Length - 2) + ')';
+    end;
+  end
+  else if LLength = 1 then
+  begin
+    LAux := 1;
+
+    if not AList[0].IsEmpty then
+    begin
+      Result := AField + ' = ' + LQuote + AList[0] + LQuote;
+    end
+    else
+    begin
+      Result := AField + ' = ' + LQuote + '0' + LQuote;
+    end;
+  end;
+
+  if LAux = 0 then
+  begin
+    Result := AField + ' = ' + LQuote + '0' + LQuote;
+  end;
+end;
+
+// Substitui os caracteres com acento, cedilha, etc.
+class function TStringUtil.Normalize(const AStr: string): string;
+var
+  LOriginal: string;
+  LModified: string;
+  LIndex: Integer;
+begin
+  Result := AStr;
+  LOriginal := 'ÇçÁÉÍÓÚÀÈÌÒÙÃÕÂáéíóúàèìòùãõêÊºª"';
+  LModified := 'CcAEIOUAEIOUAOAaeiouaeiouaoeEoa ';
+
+  for var LI: Integer := 1 to AStr.Length do
+  begin
+    LIndex := Pos(AStr[LI], LOriginal);
+
+    if LIndex > 0 then
+    begin
+      Result[LI] := LModified[LIndex];
+    end;
+  end;
+end;
+
 // Retorna apenas os caracteres do texto, dado que foram informados os caracteres
 // desejados na comparação
 class function TStringUtil.OnlyChars(const AStr, AChars: string): string;
@@ -208,6 +316,23 @@ begin
         Result := Result + TEXT_7[Random(TEXT_7.Length) + 1];
       8:
         Result := Result + TEXT_8[Random(TEXT_8.Length) + 1];
+    end;
+  end;
+end;
+
+// Verifica se o texto está contido no vetor informado
+class function TStringUtil.StrEqual(const AStr: string; const AValues: array of string; const AUpper: Boolean): Boolean;
+var
+  LStr: string;
+begin
+  Result := False;
+  LStr := IfThen(AUpper, AStr.ToUpper, AStr).Trim;
+
+  for var LI: Integer := 0 to High(AValues) do
+  begin
+    if LStr = IfThen(AUpper, AValues[LI].ToUpper, AValues[LI]).Trim then
+    begin
+      Exit(True);
     end;
   end;
 end;
