@@ -89,6 +89,7 @@ type
     [TestCase('Should create a in sql clause from a array of strings', '2')]
     [TestCase('Should create a in sql clause from a array of strings', '3')]
     [TestCase('Should create a in sql clause from a array of strings', '4')]
+    [TestCase('Should create a in sql clause from a array of strings', '5')]
     procedure ShouldCreateAInClause(AInput: Integer);
   end;
 
@@ -191,7 +192,13 @@ begin
       begin
         LArrayOfInput := LIST_MORE_THAN_999_NUMBER;
         LPutQuotes := false;
-        AExpectedString := STRING_MORE_THAN_999_NUMBER;
+        AExpectedString := CLAUSE_MORE_THAN_999_NUMBER;
+      end;
+    5:
+      begin
+        LArrayOfInput := LIST_MORE_THAN_999_NUMBER;
+        LPutQuotes := true;
+        AExpectedString := CLAUSE_MORE_THAN_999_STRING;
       end;
 
   else

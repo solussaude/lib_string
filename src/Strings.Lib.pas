@@ -184,7 +184,7 @@ begin
 
     for var LI := 0 to LLength - 1 do
     begin
-      if (not AList[LI].IsEmpty) and (AList[LI] <> '0') then
+      if not AList[LI].IsEmpty then
       begin
         Result := Result + LQuote + AList[LI] + LQuote + ', ';
 
