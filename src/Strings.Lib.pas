@@ -1,4 +1,4 @@
-﻿unit Strings.Libary;
+﻿unit Strings.Lib;
 
 interface
 
@@ -149,6 +149,7 @@ end;
 
 // Valida se o texto contém caracteres inválidos
 class function TStringUtil.ContainsInvalidChars(const AStr, AInvalidChars: string): Boolean;
+{TODO: adicionar teste}
 begin
   Result := False;
 
@@ -322,6 +323,7 @@ end;
 
 // Verifica se o texto está contido no vetor informado
 class function TStringUtil.StrEqual(const AStr: string; const AValues: array of string; const AUpper: Boolean): Boolean;
+{TODO: adicionar teste}
 var
   LStr: string;
 begin
