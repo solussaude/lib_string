@@ -101,8 +101,9 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\src\Strings.Libary.pas"/>
-        <DCCReference Include="src\Strings.Libary.Test.pas"/>
+        <DCCReference Include="..\..\src\Strings.Lib.pas"/>
+        <DCCReference Include="src\Strings.Lib.Test.pas"/>
+        <DCCReference Include="constants\Strings.Lib.Consts.Test.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -144,7 +145,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\lib_string_tests.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\..\bin\lib_string_tests.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>lib_string_tests.exe</RemoteName>
                         <Overwrite>true</Overwrite>

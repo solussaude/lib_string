@@ -10,8 +10,9 @@ uses
   DUnitX.Loggers.Console,
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
-  Strings.Libary in '..\..\src\Strings.Libary.pas',
-  Strings.Libary.Test in 'src\Strings.Libary.Test.pas';
+  Strings.Lib in '..\..\src\Strings.Lib.pas',
+  Strings.Lib.Test in 'src\Strings.Lib.Test.pas',
+  Strings.Lib.Consts.Test in 'constants\Strings.Lib.Consts.Test.pas';
 
 var
   Runner: ITestRunner;

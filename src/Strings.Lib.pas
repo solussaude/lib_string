@@ -1,4 +1,4 @@
-﻿unit Strings.Libary;
+﻿unit Strings.Lib;
 
 interface
 
@@ -149,6 +149,7 @@ end;
 
 // Valida se o texto contém caracteres inválidos
 class function TStringUtil.ContainsInvalidChars(const AStr, AInvalidChars: string): Boolean;
+{TODO: adicionar teste}
 begin
   Result := False;
 
@@ -183,7 +184,7 @@ begin
 
     for var LI := 0 to LLength - 1 do
     begin
-      if (not AList[LI].IsEmpty) and (AList[LI] <> '0') then
+      if not AList[LI].IsEmpty then
       begin
         Result := Result + LQuote + AList[LI] + LQuote + ', ';
 
@@ -322,6 +323,7 @@ end;
 
 // Verifica se o texto está contido no vetor informado
 class function TStringUtil.StrEqual(const AStr: string; const AValues: array of string; const AUpper: Boolean): Boolean;
+{TODO: adicionar teste}
 var
   LStr: string;
 begin

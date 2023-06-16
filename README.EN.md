@@ -1,10 +1,10 @@
 # lib_string
 
-[Read in english](README.en.md)
+[Ler em português](README.md)
 
-Funcionalidades úteis para manipulação de strings em Delphi
+Useful features for string manipulation in Delphi
 
-Funções:
+Functions:
 - AbbreviateAddress
 - AbbreviateName
 - ContainsInvalidChars
