@@ -323,7 +323,6 @@ end;
 
 // Verifica se o texto está contido no vetor informado
 class function TStringUtil.StrEqual(const AStr: string; const AValues: array of string; const AUpper: Boolean): Boolean;
-{TODO: adicionar teste}
 var
   LStr: string;
 begin

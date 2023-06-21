@@ -102,7 +102,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="..\..\src\Strings.Lib.pas"/>
-        <DCCReference Include="src\Strings.Lib.Test.pas"/>
+        <DCCReference Include="Strings.Lib.Test.pas"/>
         <DCCReference Include="constants\Strings.Lib.Consts.Test.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

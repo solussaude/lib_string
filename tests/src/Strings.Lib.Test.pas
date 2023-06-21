@@ -83,14 +83,21 @@ type
     procedure ShouldNormalizeCharacter(AInputString: String;
       AOutputString: String);
 
-    [TestCase('Should create a in sql clause from a array of strings', '-1')]
-    [TestCase('Should create a in sql clause from a array of strings', '0')]
-    [TestCase('Should create a in sql clause from a array of strings', '1')]
-    [TestCase('Should create a in sql clause from a array of strings', '2')]
-    [TestCase('Should create a in sql clause from a array of strings', '3')]
-    [TestCase('Should create a in sql clause from a array of strings', '4')]
-    [TestCase('Should create a in sql clause from a array of strings', '5')]
+    [TestCase('Should create a sql clause equal 0 with quotes', '-1')]
+    [TestCase('Should create a sql clause equal A with quotes', '0')]
+    [TestCase('Should create a in sql clause of A and B with quotes', '1')]
+    [TestCase('Should create a sql clause equal 1 without quotes', '2')]
+    [TestCase('Should create a in sql clause of 1 and 2 without quotes', '3')]
+    [TestCase('Should create a in sql clause from 0 to 999 without quotes', '4')]
+    [TestCase('Should create a in sql clause from 0 to 999 with quotes', '5')]
     procedure ShouldCreateAInClause(AInput: Integer);
+
+    [TestCase('The text "PEDRINHO" exists in array, but I''ll search per "pedrinho", using "ForceUpper"', '0')]
+    [TestCase('The text "PEDRINHO" exists in array, but I''ll search per "pedrinho", without "ForceUpper"', '1')]
+    [TestCase('The text "pedrinho" don''t exists in array, and I''ll search using "ForseUpper"', '2')]
+    [TestCase('The text "pedrinho" don''t exists in array, and I''ll search without "ForseUpper"', '3')]
+    [TestCase('The text "PEDRINHO" exists in array, but I''ll search per "PEDRINHO", without "ForceUpper"', '4')]
+    procedure ShouldFindStringInArray(AInput: Integer);
   end;
 
 implementation
@@ -126,6 +133,68 @@ begin
   Assert.AreEqual(AOutputString, LStringFromFunction);
 end;
 
+procedure TTestStringsLibrary.ShouldFindStringInArray(AInput: Integer);
+var
+  LExpectReturn, LFunctionReturn, LForceUpperCase: Boolean;
+
+  LStringToFind: String;
+  LArrayInput: array of string;
+begin
+
+  LForceUpperCase := True;
+  LExpectReturn := True;
+
+  { Arrange }
+  case AInput of
+    0:
+      begin
+        LArrayInput := ['PEDRINHO', 'MATHEUS', 'CAROL'];
+        LStringToFind := 'pedrinho';
+        LForceUpperCase := True;
+
+        LExpectReturn := True;
+      end;
+    1:
+      begin
+        LArrayInput := ['PEDRINHO', 'MATHEUS', 'CAROL'];
+        LStringToFind := 'pedrinho';
+        LForceUpperCase := False;
+
+        LExpectReturn := False;
+      end;
+    2:
+      begin
+        LArrayInput := ['MATHEUS', 'CAROL'];
+        LStringToFind := 'pedrinho';
+        LForceUpperCase := True;
+
+        LExpectReturn := False;
+      end;
+    3:
+      begin
+        LArrayInput := ['MATHEUS', 'CAROL'];
+        LStringToFind := 'pedrinho';
+        LForceUpperCase := False;
+
+        LExpectReturn := False;
+      end;
+    4:
+      begin
+        LArrayInput := ['PEDRINHO', 'MATHEUS', 'CAROL'];
+        LStringToFind := 'PEDRINHO';
+        LForceUpperCase := False;
+
+        LExpectReturn := True;
+      end;
+  end;
+
+  LFunctionReturn := TStringUtil.StrEqual(LStringToFind,
+    LArrayInput, LForceUpperCase);
+
+  { Assert }
+  Assert.AreEqual(LExpectReturn, LFunctionReturn);
+end;
+
 procedure TTestStringsLibrary.ShouldAbbreviateAddress(AInputString: String;
   ALength: Integer; AOutputString: String);
 var
@@ -157,7 +226,7 @@ var
   LArrayOfInput: TArray<string>;
   LColumn: String;
   LPutQuotes: Boolean;
-  AExpectedString: String;
+  LExpectedString: String;
 
 begin
   LColumn := 'COLUNA';
@@ -169,41 +238,41 @@ begin
     0:
       begin
         LArrayOfInput := ['A'];
-        AExpectedString := 'COLUNA = ''A''';
+        LExpectedString := 'COLUNA = ''A''';
       end;
     1:
       begin
         LArrayOfInput := ['A', 'B'];
-        AExpectedString := 'COLUNA IN (''A'', ''B'')';
+        LExpectedString := 'COLUNA IN (''A'', ''B'')';
       end;
     2:
       begin
         LArrayOfInput := ['1'];
         LPutQuotes := false;
-        AExpectedString := 'COLUNA = 1';
+        LExpectedString := 'COLUNA = 1';
       end;
     3:
       begin
         LArrayOfInput := ['1', '2'];
         LPutQuotes := false;
-        AExpectedString := 'COLUNA IN (1, 2)';
+        LExpectedString := 'COLUNA IN (1, 2)';
       end;
     4:
       begin
         LArrayOfInput := LIST_MORE_THAN_999_NUMBER;
         LPutQuotes := false;
-        AExpectedString := CLAUSE_MORE_THAN_999_NUMBER;
+        LExpectedString := CLAUSE_MORE_THAN_999_NUMBER;
       end;
     5:
       begin
         LArrayOfInput := LIST_MORE_THAN_999_NUMBER;
         LPutQuotes := true;
-        AExpectedString := CLAUSE_MORE_THAN_999_STRING;
+        LExpectedString := CLAUSE_MORE_THAN_999_STRING;
       end;
 
   else
     LArrayOfInput := [];
-    AExpectedString := 'COLUNA = ''0''';
+    LExpectedString := 'COLUNA = ''0''';
   end;
 
   { Act }
@@ -211,7 +280,7 @@ begin
     LPutQuotes);
 
   { Assert }
-  Assert.AreEqual(AExpectedString, LStringFromFunction);
+  Assert.AreEqual(LExpectedString, LStringFromFunction);
 end;
 
 procedure TTestStringsLibrary.ShouldKeepSelectedChars(AInputString, AKeepChars,
