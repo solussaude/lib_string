@@ -1,6 +1,6 @@
 # lib_string
 
-[Read in english](README.en.md)
+[Read in english](README.EN.md)
 
 Funcionalidades úteis para manipulação de strings em Delphi
 
