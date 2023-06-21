@@ -97,7 +97,7 @@ type
     [TestCase('The text "pedrinho" don''t exists in array, and I''ll search using "ForseUpper"', '2')]
     [TestCase('The text "pedrinho" don''t exists in array, and I''ll search without "ForseUpper"', '3')]
     [TestCase('The text "PEDRINHO" exists in array, but I''ll search per "PEDRINHO", without "ForceUpper"', '4')]
-    procedure DeveValidarStringNoArray(AInput: Integer);
+    procedure ShouldFindStringInArray(AInput: Integer);
   end;
 
 implementation
@@ -133,7 +133,7 @@ begin
   Assert.AreEqual(AOutputString, LStringFromFunction);
 end;
 
-procedure TTestStringsLibrary.DeveValidarStringNoArray(AInput: Integer);
+procedure TTestStringsLibrary.ShouldFindStringInArray(AInput: Integer);
 var
   LExpectReturn, LFunctionReturn, LForceUpperCase: Boolean;
 
