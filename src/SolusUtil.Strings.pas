@@ -1,4 +1,4 @@
-﻿unit Strings.Lib;
+﻿unit SolusUtil.Strings;
 
 interface
 
@@ -6,7 +6,7 @@ uses
   System.Generics.Collections;
 
 type
-  TStringUtil = class
+  TSolusString = class
   private
     class function AbbreviateWords(const AStr: string; const ALength: Integer; const ADict: TDictionary<string, string>): string;
 
@@ -34,7 +34,7 @@ uses
   System.SysUtils;
 
 // Abrevia um endereço
-class function TStringUtil.AbbreviateAddress(const AStr: string; const ALength: Integer): string;
+class function TSolusString.AbbreviateAddress(const AStr: string; const ALength: Integer): string;
 var
   LDict: TDictionary<string, string>;
 begin
@@ -62,7 +62,7 @@ begin
 end;
 
 // Abrevia um nome
-class function TStringUtil.AbbreviateName(const AStr: string; const ALength: Integer): string;
+class function TSolusString.AbbreviateName(const AStr: string; const ALength: Integer): string;
 var
   LDict: TDictionary<string, string>;
 begin
@@ -84,7 +84,7 @@ begin
 end;
 
 // Abrevia um texto com base em um dicionário de abreviações
-class function TStringUtil.AbbreviateWords(const AStr: string; const ALength: Integer; const ADict: TDictionary<string, string>): string;
+class function TSolusString.AbbreviateWords(const AStr: string; const ALength: Integer; const ADict: TDictionary<string, string>): string;
 var
   LName: string;
   LN: Integer;
@@ -148,7 +148,7 @@ begin
 end;
 
 // Valida se o texto contém caracteres inválidos
-class function TStringUtil.ContainsInvalidChars(const AStr, AInvalidChars: string): Boolean;
+class function TSolusString.ContainsInvalidChars(const AStr, AInvalidChars: string): Boolean;
 {TODO: adicionar teste}
 begin
   Result := False;
@@ -163,7 +163,7 @@ begin
 end;
 
 // Cria uma composição IN-SQL
-class function TStringUtil.InClause(const AList: array of string; const AField: string; const APutQuotes: Boolean): string;
+class function TSolusString.InClause(const AList: array of string; const AField: string; const APutQuotes: Boolean): string;
 var
   LLength: Integer;
   LAux: Integer;
@@ -229,7 +229,7 @@ begin
 end;
 
 // Substitui os caracteres com acento, cedilha, etc.
-class function TStringUtil.Normalize(const AStr: string): string;
+class function TSolusString.Normalize(const AStr: string): string;
 var
   LOriginal: string;
   LModified: string;
@@ -252,7 +252,7 @@ end;
 
 // Retorna apenas os caracteres do texto, dado que foram informados os caracteres
 // desejados na comparação
-class function TStringUtil.OnlyChars(const AStr, AChars: string): string;
+class function TSolusString.OnlyChars(const AStr, AChars: string): string;
 begin
   Result := '';
 
@@ -266,18 +266,18 @@ begin
 end;
 
 // Retorna apenas os caracteres e números do texto
-class function TStringUtil.OnlyChars(const AStr: string): string;
+class function TSolusString.OnlyChars(const AStr: string): string;
 begin
   Result := Self.OnlyChars(AStr, 'abcdefghijklmnopqrstuvxywzABCDEFGHIJKLMNOPQRSTUVXYWZ1234567890');
 end;
 
-class function TStringUtil.OnlyNumbers(const AStr: string): string;
+class function TSolusString.OnlyNumbers(const AStr: string): string;
 begin
   Result := Self.OnlyChars(AStr, '1234567890');
 end;
 
 // Gera um texto aleatório
-class function TStringUtil.RandomText(const ALength, AType: Integer): string;
+class function TSolusString.RandomText(const ALength, AType: Integer): string;
 const
   TEXT_1: string = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   TEXT_2: string = '1234567890abcdefghijklmnopqrstuvwxyz';
@@ -322,7 +322,7 @@ begin
 end;
 
 // Verifica se o texto está contido no vetor informado
-class function TStringUtil.StrEqual(const AStr: string; const AValues: array of string; const AUpper: Boolean): Boolean;
+class function TSolusString.StrEqual(const AStr: string; const AValues: array of string; const AUpper: Boolean): Boolean;
 var
   LStr: string;
 begin

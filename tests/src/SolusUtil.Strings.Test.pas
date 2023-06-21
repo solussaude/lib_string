@@ -1,4 +1,4 @@
-﻿unit Strings.Lib.Test;
+﻿unit SolusUtil.Strings.Test;
 
 interface
 
@@ -104,8 +104,8 @@ implementation
 
 uses
   System.SysUtils,
-  Strings.Lib,
-  Strings.Lib.Consts.Test;
+  SolusUtil.Strings,
+  SolusUtil.Strings.Test.Consts;
 
 { TTestStringsLibrary }
 
@@ -115,7 +115,7 @@ var
   LStringFromFunction: String;
 begin
   { Arrange } { Act }
-  LStringFromFunction := TStringUtil.OnlyNumbers(AInputString);
+  LStringFromFunction := TSolusString.OnlyNumbers(AInputString);
 
   { Assert }
   Assert.AreEqual(AOutputString, LStringFromFunction);
@@ -127,7 +127,7 @@ var
   LStringFromFunction: String;
 begin
   { Arrange } { Act }
-  LStringFromFunction := TStringUtil.OnlyChars(AInputString);
+  LStringFromFunction := TSolusString.OnlyChars(AInputString);
 
   { Assert }
   Assert.AreEqual(AOutputString, LStringFromFunction);
@@ -188,7 +188,7 @@ begin
       end;
   end;
 
-  LFunctionReturn := TStringUtil.StrEqual(LStringToFind,
+  LFunctionReturn := TSolusString.StrEqual(LStringToFind,
     LArrayInput, LForceUpperCase);
 
   { Assert }
@@ -201,7 +201,7 @@ var
   LStringFromFunction: String;
 begin
   { Arrange } { Act }
-  LStringFromFunction := TStringUtil.AbbreviateAddress(AInputString, ALength);
+  LStringFromFunction := TSolusString.AbbreviateAddress(AInputString, ALength);
 
   { Assert }
   Assert.AreEqual(AOutputString, LStringFromFunction);
@@ -213,7 +213,7 @@ var
   LStringFromFunction: String;
 begin
   { Arrange } { Act }
-  LStringFromFunction := TStringUtil.AbbreviateName(AInputString, ALength);
+  LStringFromFunction := TSolusString.AbbreviateName(AInputString, ALength);
 
   { Assert }
   Assert.AreEqual(AOutputString, LStringFromFunction);
@@ -276,7 +276,7 @@ begin
   end;
 
   { Act }
-  LStringFromFunction := TStringUtil.InClause(LArrayOfInput, LColumn,
+  LStringFromFunction := TSolusString.InClause(LArrayOfInput, LColumn,
     LPutQuotes);
 
   { Assert }
@@ -289,7 +289,7 @@ var
   LStringFromFunction: String;
 begin
   { Arrange } { Act }
-  LStringFromFunction := TStringUtil.OnlyChars(AInputString, AKeepChars);
+  LStringFromFunction := TSolusString.OnlyChars(AInputString, AKeepChars);
 
   { Assert }
   Assert.AreEqual(AOutputString, LStringFromFunction);
@@ -301,7 +301,7 @@ var
   LStringFromFunction: String;
 begin
   { Arrange } { Act }
-  LStringFromFunction := TStringUtil.Normalize(AInputString);
+  LStringFromFunction := TSolusString.Normalize(AInputString);
 
   { Assert }
   Assert.AreEqual(AOutputString, LStringFromFunction);

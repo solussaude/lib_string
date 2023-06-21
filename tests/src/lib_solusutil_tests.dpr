@@ -1,4 +1,4 @@
-program lib_string_tests;
+program lib_solusutil_tests;
 
 {$IFDEF CONSOLE_TESTRUNNER}
 {$APPTYPE CONSOLE}
@@ -10,9 +10,9 @@ uses
   DUnitX.Loggers.Console,
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
-  Strings.Lib in '..\..\src\Strings.Lib.pas',
-  Strings.Lib.Test in 'Strings.Lib.Test.pas',
-  Strings.Lib.Consts.Test in 'constants\Strings.Lib.Consts.Test.pas';
+  SolusUtil.Strings in '..\..\src\SolusUtil.Strings.pas',
+  SolusUtil.Strings.Test in 'SolusUtil.Strings.Test.pas',
+  SolusUtil.Strings.Test.Consts in 'constants\SolusUtil.Strings.Test.Consts.pas';
 
 var
   Runner: ITestRunner;
