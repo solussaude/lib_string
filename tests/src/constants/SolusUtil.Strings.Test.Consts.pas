@@ -1,4 +1,4 @@
-unit Strings.Lib.Consts.Test;
+unit SolusUtil.Strings.Test.Consts;
 
 interface
 

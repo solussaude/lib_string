@@ -1,10 +1,10 @@
-# lib_string
+# Solus Util
 
 [Read in english](README.EN.md)
 
 Funcionalidades úteis para manipulação de strings em Delphi
 
-Funções:
+Funções para Strings:
 - AbbreviateAddress
 - AbbreviateName
 - ContainsInvalidChars
