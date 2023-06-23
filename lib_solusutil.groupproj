@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6DCA4AFC-DB42-4A59-ADFC-FA4E9570BDD2}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="tests\src\lib_solusutil_tests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="lib_solusutil_tests">
+        <MSBuild Projects="tests\src\lib_solusutil_tests.dproj"/>
+    </Target>
+    <Target Name="lib_solusutil_tests:Clean">
+        <MSBuild Projects="tests\src\lib_solusutil_tests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="lib_solusutil_tests:Make">
+        <MSBuild Projects="tests\src\lib_solusutil_tests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="lib_solusutil_tests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="lib_solusutil_tests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="lib_solusutil_tests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
