@@ -1,4 +1,4 @@
-program lib_solusutil_tests;
+﻿program lib_solusutil_tests;
 
 {$IFDEF CONSOLE_TESTRUNNER}
 {$APPTYPE CONSOLE}
@@ -12,7 +12,11 @@ uses
   DUnitX.TestFramework,
   SolusUtil.Strings in '..\..\src\SolusUtil.Strings.pas',
   SolusUtil.Strings.Test in 'SolusUtil.Strings.Test.pas',
-  SolusUtil.Strings.Test.Consts in 'constants\SolusUtil.Strings.Test.Consts.pas';
+  SolusUtil.Strings.Test.Consts in 'constants\SolusUtil.Strings.Test.Consts.pas',
+  SolusUtil.Strings.Mask in '..\..\src\SolusUtil.Strings.Mask.pas',
+  SolusUtil.Strings.Mask.Test in 'SolusUtil.Strings.Mask.Test.pas',
+  SolusUtil.Strings.Abbreviate in '..\..\src\SolusUtil.Strings.Abbreviate.pas',
+  SolusUtil.Strings.Abbreviate.Test in 'SolusUtil.Strings.Abbreviate.Test.pas';
 
 var
   Runner: ITestRunner;

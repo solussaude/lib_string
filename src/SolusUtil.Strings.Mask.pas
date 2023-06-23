@@ -24,7 +24,7 @@ uses
   System.StrUtils,
   System.SysUtils;
 
-// Formata um CEP - XX.XXX-XX
+// Formata um CEP - XX.XXX-XXX
 class function TSolusStringMask.CEP(const AStr: string): string;
 var
   LCEP: string;

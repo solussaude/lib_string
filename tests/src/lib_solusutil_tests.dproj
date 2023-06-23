@@ -104,6 +104,10 @@
         <DCCReference Include="..\..\src\SolusUtil.Strings.pas"/>
         <DCCReference Include="SolusUtil.Strings.Test.pas"/>
         <DCCReference Include="constants\SolusUtil.Strings.Test.Consts.pas"/>
+        <DCCReference Include="..\..\src\SolusUtil.Strings.Mask.pas"/>
+        <DCCReference Include="SolusUtil.Strings.Mask.Test.pas"/>
+        <DCCReference Include="..\..\src\SolusUtil.Strings.Abbreviate.pas"/>
+        <DCCReference Include="SolusUtil.Strings.Abbreviate.Test.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

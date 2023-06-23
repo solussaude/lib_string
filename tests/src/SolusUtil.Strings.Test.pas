@@ -8,7 +8,7 @@ uses
 type
 
   [TestFixture]
-  TTestStringsLibrary = class
+  TTestSolusStrings = class
   public
     [Test]
     [TestCase('Remove lower letters',
@@ -29,53 +29,6 @@ type
     [TestCase('Should remover number', 'ABC123,1CBCA,ABC1')]
     [TestCase('Shold keep the dot and the letter C', 'ABC.123,.C,C.')]
     procedure ShouldKeepSelectedChars(AInputString, AKeepChars,
-      AOutputString: String);
-
-    [TestCase('Should abbreviate "AVENIDA"',
-      'AVENIDA JOAO LUCAS FILHO,14,AV J. L. FILHO')]
-    [TestCase('Should abbreviate "RUA"',
-      'rua maria filha dos santos,21,R M. F. DOS SANTOS')]
-    [TestCase('Should abbreviate "CONDOMINIO"',
-      'CONDOMINIO RAFAEL LIMA SOBRINHO,19,COND R. L. SOBRINHO')]
-    [TestCase('Should abbreviate "CONDOMÍNIO"',
-      'CONDOMÍNIO MARCIA SOUZA SOBRINHA,19,COND M. S. SOBRINHA')]
-    [TestCase('Should abbreviate "BLOCO"',
-      'bloco marcelo claudio,16,BL M. CLAUDIO')]
-    [TestCase('Should abbreviate "APARTAMENTO"',
-      'apartamento maria dos santos,18,APTO M. DOS SANTOS')]
-    [TestCase('Should abbreviate "PRACA"',
-      'PRACA LEONARDO ARRANTES NETO,17,PC L. A. NETO')]
-    [TestCase('Should abbreviate "PRAÇA"',
-      'PRAÇA JESSICA MENEQUEL NETA,18,PC J. M. NETA')]
-    [TestCase('Should abbreviate "JARDIM"',
-      'JARDIM CLARICE JOANA MOREIRA,16,JD C. J. MOREIRA')]
-    [TestCase('Should abbreviate "EDIFICIO"',
-      'EDIFICIO EMILY MARLENE MENDES,15,ED E. M. MENDES')]
-    [TestCase('Should abbreviate "CORONEL"',
-      'CORONEL IAN ARTHUR PAULO,16,CRN IAN A. PAULO')]
-    [TestCase('Should abbreviate "EXPEDICIONARIO"',
-      'EXPEDICIONARIO BERNARDO JOSÉ LUAN FARIAS,19,EXP B. J. L. FARIAS')]
-    [TestCase('Should abbreviate "RODOVIA"',
-      'RODOVIA RAFAEL VICENTE DA ROSA,17,ROD R. V. DA ROSA')]
-    procedure ShouldAbbreviateAddress(AInputString: String; ALength: Integer;
-      AOutputString: String);
-
-    [TestCase('Should abbreviate "Filho"', 'JOAO LUCAS FILHO,10,JOAO L. FH')]
-    [TestCase('Should abbreviate "Filha"',
-      'maria filha dos santos,19,MARIA FH DOS SANTOS')]
-    [TestCase('Should abbreviate "Sobrinho"',
-      'RAFAEL LIMA SOBRINHO,14,RAFAEL L. SB')]
-    [TestCase('Should abbreviate "Sobrinha"',
-      'MARCIA SOUZA SOBRINHA,16,MARCIA S. SB')]
-    [TestCase('Should abbreviate "Doutor"',
-      'doutor marcelo claudio,16,DR M. CLAUDIO')]
-    [TestCase('Should abbreviate "Doutora"',
-      'doutora maria dos santos,16,DR M. DOS SANTOS')]
-    [TestCase('Should abbreviate "Neto"',
-      'LEONARDO ARRANTES NETO,14,LEONARDO A. NT')]
-    [TestCase('Should abbreviate "Neta"',
-      'JESSICA MENEQUEL NETA,15,JESSICA M. NT')]
-    procedure ShouldAbbreviateName(AInputString: String; ALength: Integer;
       AOutputString: String);
 
     [TestCase('Should replace invalid character',
@@ -107,9 +60,9 @@ uses
   SolusUtil.Strings,
   SolusUtil.Strings.Test.Consts;
 
-{ TTestStringsLibrary }
+{ TTestSolusStrings }
 
-procedure TTestStringsLibrary.ShouldRemoveChar(AInputString,
+procedure TTestSolusStrings.ShouldRemoveChar(AInputString,
   AOutputString: String);
 var
   LStringFromFunction: String;
@@ -121,7 +74,7 @@ begin
   Assert.AreEqual(AOutputString, LStringFromFunction);
 end;
 
-procedure TTestStringsLibrary.ShouldSpecialCharacters(AInputString,
+procedure TTestSolusStrings.ShouldSpecialCharacters(AInputString,
   AOutputString: String);
 var
   LStringFromFunction: String;
@@ -133,7 +86,7 @@ begin
   Assert.AreEqual(AOutputString, LStringFromFunction);
 end;
 
-procedure TTestStringsLibrary.ShouldFindStringInArray(AInput: Integer);
+procedure TTestSolusStrings.ShouldFindStringInArray(AInput: Integer);
 var
   LExpectReturn, LFunctionReturn, LForceUpperCase: Boolean;
 
@@ -195,31 +148,7 @@ begin
   Assert.AreEqual(LExpectReturn, LFunctionReturn);
 end;
 
-procedure TTestStringsLibrary.ShouldAbbreviateAddress(AInputString: String;
-  ALength: Integer; AOutputString: String);
-var
-  LStringFromFunction: String;
-begin
-  { Arrange } { Act }
-  LStringFromFunction := TSolusString.AbbreviateAddress(AInputString, ALength);
-
-  { Assert }
-  Assert.AreEqual(AOutputString, LStringFromFunction);
-end;
-
-procedure TTestStringsLibrary.ShouldAbbreviateName(AInputString: String;
-  ALength: Integer; AOutputString: String);
-var
-  LStringFromFunction: String;
-begin
-  { Arrange } { Act }
-  LStringFromFunction := TSolusString.AbbreviateName(AInputString, ALength);
-
-  { Assert }
-  Assert.AreEqual(AOutputString, LStringFromFunction);
-end;
-
-procedure TTestStringsLibrary.ShouldCreateAInClause(AInput: Integer);
+procedure TTestSolusStrings.ShouldCreateAInClause(AInput: Integer);
 var
   LStringFromFunction: String;
 
@@ -283,7 +212,7 @@ begin
   Assert.AreEqual(LExpectedString, LStringFromFunction);
 end;
 
-procedure TTestStringsLibrary.ShouldKeepSelectedChars(AInputString, AKeepChars,
+procedure TTestSolusStrings.ShouldKeepSelectedChars(AInputString, AKeepChars,
   AOutputString: String);
 var
   LStringFromFunction: String;
@@ -295,7 +224,7 @@ begin
   Assert.AreEqual(AOutputString, LStringFromFunction);
 end;
 
-procedure TTestStringsLibrary.ShouldNormalizeCharacter(AInputString,
+procedure TTestSolusStrings.ShouldNormalizeCharacter(AInputString,
   AOutputString: String);
 var
   LStringFromFunction: String;
@@ -309,6 +238,6 @@ end;
 
 initialization
 
-TDUnitX.RegisterTestFixture(TTestStringsLibrary);
+TDUnitX.RegisterTestFixture(TTestSolusStrings);
 
 end.
