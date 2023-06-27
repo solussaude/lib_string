@@ -16,7 +16,8 @@ uses
   SolusUtil.Strings.Mask in '..\..\src\SolusUtil.Strings.Mask.pas',
   SolusUtil.Strings.Mask.Test in 'SolusUtil.Strings.Mask.Test.pas',
   SolusUtil.Strings.Abbreviate in '..\..\src\SolusUtil.Strings.Abbreviate.pas',
-  SolusUtil.Strings.Abbreviate.Test in 'SolusUtil.Strings.Abbreviate.Test.pas';
+  SolusUtil.Strings.Abbreviate.Test in 'SolusUtil.Strings.Abbreviate.Test.pas',
+  SolusUtil.Date in '..\..\src\SolusUtil.Date.pas';
 
 var
   Runner: ITestRunner;

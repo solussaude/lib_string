@@ -108,6 +108,7 @@
         <DCCReference Include="SolusUtil.Strings.Mask.Test.pas"/>
         <DCCReference Include="..\..\src\SolusUtil.Strings.Abbreviate.pas"/>
         <DCCReference Include="SolusUtil.Strings.Abbreviate.Test.pas"/>
+        <DCCReference Include="..\..\src\SolusUtil.Date.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
